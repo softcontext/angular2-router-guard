@@ -5,9 +5,9 @@ import { ChildrenComponent } from './children.component';
 import { Child7Component } from './child7/child7.component';
 import { Child8Component } from './child8/child8.component';
 import { Child9Component } from './child9/child9.component';
+import { ChildWrapperComponent } from './child-wrapper/child-wrapper.component';
 
 import { CanActivateChildGuardService } from '../guard/can-activate-child-guard.service';
-import { ChildrenResolveGuardService } from '../guard/children-resolve-guard.service';
 
 @NgModule({
   imports: [
@@ -25,11 +25,10 @@ import { ChildrenResolveGuardService } from '../guard/children-resolve-guard.ser
         ]
       },
       {
-        path: 'guard/children', component: ChildrenComponent,
+        path: 'wrapper/children', component: ChildrenComponent,
         children: [
           {
-            path: '',
-            canActivateChild: [CanActivateChildGuardService],
+            path: '', component: ChildWrapperComponent, // this is wrapper
             children: [
               { path: '', component: Child7Component },
               { path: 'child7', component: Child7Component },
@@ -40,11 +39,11 @@ import { ChildrenResolveGuardService } from '../guard/children-resolve-guard.ser
         ]
       },
       {
-        path: 'resolve/children', component: ChildrenComponent,
+        path: 'guard/children', component: ChildrenComponent,
         children: [
           {
             path: '',
-            resolve: [ChildrenResolveGuardService],
+            canActivateChild: [CanActivateChildGuardService],
             children: [
               { path: '', component: Child7Component },
               { path: 'child7', component: Child7Component },

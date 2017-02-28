@@ -20,6 +20,8 @@ export class CanActivateGuardService implements CanActivate {
     console.log(url);
     console.log(route.params);
 
+    // If the function returns false (e.g: the user is not logged in)
+    // the application will not navigate to the route.
     return this.permissions.canActivate(this.currentUser, route.params);
   }
 

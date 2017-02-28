@@ -19,6 +19,9 @@ import { CanActivateGuardService, UserToken, Permissions } from './guard/can-act
 import { CanActivateChildGuardService } from './guard/can-activate-child-guard.service';
 import { CanDeactivateGuardService } from './guard/can-deactivate-guard.service';
 
+/*
+    https://angular.io/docs/js/latest/api/router/index/Routes-type-alias.html
+ */
 @NgModule({
   imports: [
     BrowserModule,
@@ -31,7 +34,7 @@ import { CanDeactivateGuardService } from './guard/can-deactivate-guard.service'
       { path: 'child3', component: Child3Component },
       { path: 'lazy-load', loadChildren: 'app/lazy-load/lazy-load.module#LazyLoadModule', canLoad: [CanLoadGuardService] },
       { path: 'not-found', component: NotFoundComponent },
-      { path: '**', component: NotFoundComponent },
+      { path: '**', redirectTo: '/not-found' },
     ]),
     AnotherModule,
     LazyLoadModule,
